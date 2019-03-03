@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <button id="btn">Hello</button>
+
+    <script>
+        const sock = new WebSocket("ws://127.0.0.1:5001");
+
+        sock.addEventListener("open", e => {
+            console.log("接続が開かれたときに呼び出されるイベントリスナー");
+        });
+
+        sock.addEventListener("message", e => {
+            console.log(e.data);
+            console.log("サーバーからメッセージを受信したときに呼び出されるイベントリスナー");
+        });
+
+        sock.addEventListener("close", e => {
+            console.log("接続が閉じられたときに呼び出されるイベントリスナー");
+        });
+
+        sock.addEventListener("error", e => {
+            console.log("エラーが発生したときに呼び出されるイベントリスナー");
+        });
+
+        btn.addEventListener("click", e => {
+            sock.send("hello");
+        });
+    </script>
+</body>
+</html>
