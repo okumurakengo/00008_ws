@@ -12,19 +12,6 @@
     <script>
         const sock = new WebSocket("ws://127.0.0.1:5001");
 
-        sock.addEventListener("message", e => {
-            // サーバーから受信
-            const { hoge, fuga, piyo } = JSON.parse(e.data);
-            console.log(hoge, fuga, piyo);
-        });
-
-        btn.addEventListener("click", e => {
-            // サーバーへ送信
-            sock.send(JSON.stringify({
-                name: 'alice',
-                age: 25,
-            }));
-        });
     </script>
 </body>
 </html>
